@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import BooksList from './components/books/BooksList';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <Navbar />
+          <BooksList />
           <Footer />
         </div>
       </Provider>
