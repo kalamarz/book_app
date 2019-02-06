@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 
 class BooksList extends Component {
+
+  onDeleteClick = ( bookId) => { 
+   this.props.firestore.collection('books').doc(bookId).delete();
+  }
 
   render() {
     const { books } = this.props;
@@ -20,6 +25,8 @@ class BooksList extends Component {
               <th>Year</th>
               <th>Pages</th>
               <th>ISBN</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +38,8 @@ class BooksList extends Component {
               <td>{book.year}</td>
               <td>{book.pages}</td>
               <td>{book.isbn}</td>
+              <td>Edit</td>
+              <td><button onClick={ () => this.onDeleteClick(book.id)}>Delete</button></td>
             </tr>
             ))}
           </tbody>
