@@ -30,7 +30,7 @@ class BooksList extends Component {
               <td>{book.genre}</td>
               <td>{book.year}</td>
               <td>{book.pages}</td>
-              <td>{book.ISBN}</td>
+              <td>{book.isbn}</td>
             </tr>
             ))}
           </tbody>
