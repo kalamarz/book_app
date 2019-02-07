@@ -38,7 +38,7 @@ class BooksList extends Component {
               <td>{book.year}</td>
               <td>{book.pages}</td>
               <td>{book.isbn}</td>
-              <td>Edit</td>
+              <td><Link to={`/edit/${book.id}`}>Edit</Link></td>
               <td><button onClick={ () => this.onDeleteClick(book.id)}>Delete</button></td>
             </tr>
             ))}

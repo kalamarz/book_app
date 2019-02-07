@@ -6,6 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Dashboard from './components/layout/Dashboard';
 import AddBook from './components/books/AddBook';
+import EditBook from './components/books/EditBook';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <Navbar />
               <Route exact path="/" component={Dashboard} />
               <Route path="/book/add" component={AddBook} />
+              <Route path="/edit/:id" component={EditBook} />
             <Footer />
           </React.Fragment>
         </Router>
