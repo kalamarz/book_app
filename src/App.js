@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer';
 import Dashboard from './components/layout/Dashboard';
 import AddBook from './components/books/AddBook';
 import EditBook from './components/books/EditBook';
+import './styles/styles.scss';
 
 class App extends Component {
   render() {
