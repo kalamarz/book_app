@@ -15,8 +15,8 @@ class BooksList extends Component {
 
     if(!books) return <p>Loading...</p>;
     return (
-      <div>
-        <table>
+      <div className='list'>
+        <table className='list__table'>
           <thead>
             <tr>
               <th>Title</th>

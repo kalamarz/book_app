@@ -1,0 +1,15 @@
+.list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &__table {
+        text-align: center;
+    }
+}
+
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid $colorLightGrey;
+}
