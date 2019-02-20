@@ -1,0 +1,19 @@
+.button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: $colorDark;
+
+    &--add {
+        background-color: $colorAdd;
+    }
+
+    &--edit {
+        background-color: $colorEdit;
+    }
+
+    &--delete {
+        background-color: $colorDelete;
+    }
+}
