@@ -1,6 +1,10 @@
 @import'./base/variables';
+@import'./base/base';
 
 @import './layout/navbar';
+@import './layout/dashboard';
+@import './layout/footer';
 
 @import './components/booksList';
 @import './components/button';
+@import './components/form';

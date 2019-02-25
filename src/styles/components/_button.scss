@@ -3,10 +3,13 @@
     border: none;
     cursor: pointer;
     text-decoration: none;
+    text-transform: uppercase;
     color: $colorDark;
 
     &--add {
         background-color: $colorAdd;
+        align-self: center;
+        margin-bottom: 10px;
     }
 
     &--edit {
@@ -15,5 +18,12 @@
 
     &--delete {
         background-color: $colorDelete;
+    }
+
+    &--submit {
+        align-self: center;
+        margin-top: 10px;
+        background-color: $colorSubmit;
+        color: $colorLightGrey;
     }
 }

@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    overflow-x: auto;
 
     &__table {
         text-align: center;
@@ -12,4 +13,8 @@ th,
 td {
     padding: 10px;
     border-bottom: 1px solid $colorLightGrey;
+}
+
+.loading {
+    text-align: center;
 }

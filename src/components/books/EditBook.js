@@ -35,11 +35,13 @@ class EditBook extends Component {
   render() {
     const { book } = this.props
 
-    if(!book) return <p>Loading...</p>;
+    if(!book) return <p className='loading'>Loading...</p>;
     return (
-        <div>
-          <form onSubmit={this.onSubmit}>
-            <div>
+        <div className='form'>
+          <form onSubmit={this.onSubmit}
+            className='form__container'
+            >
+            <div className='form__group'>
               <label htmlFor='title'>Title</label>
               <input 
                 type='text'
@@ -49,7 +51,7 @@ class EditBook extends Component {
                 required
               />
             </div>
-            <div>
+            <div className='form__group'>
               <label htmlFor='author'>Author</label>
               <input 
                 type='text'
@@ -59,7 +61,7 @@ class EditBook extends Component {
                 required
               />
             </div>
-            <div>
+            <div className='form__group'>
               <label htmlFor='genre'>Genre</label>
               <input 
                 type='text'
@@ -69,7 +71,7 @@ class EditBook extends Component {
                 required
               />
             </div>
-            <div>
+            <div className='form__group'>
               <label htmlFor='year'>Year</label>
               <input 
                 type='number'
@@ -79,7 +81,7 @@ class EditBook extends Component {
                 required
               />
             </div>
-            <div>
+            <div className='form__group'>
               <label htmlFor='pages'>Pages</label>
               <input 
                 type='number'
@@ -89,7 +91,7 @@ class EditBook extends Component {
                 required
               />
             </div>
-            <div>
+            <div className='form__group'>
               <label htmlFor='isbn'>ISBN</label>
               <input 
                 type='number'
@@ -99,7 +101,7 @@ class EditBook extends Component {
                 required
               />
             </div>
-            <button type='submit'>Submit</button>
+            <button className='button button--submit' type='submit'>Submit</button>
           </form>
         </div>  
     )

@@ -34,13 +34,15 @@ class AddBook extends Component {
       const { title, author, genre, year, pages, isbn } = this.state;
 
     return (
-      <div>
-        <div>
+      <div className='form'>
+        <button className='button button-back'>
           <Link to ='/'>Back</Link>
-        </div>
+        </button>
           <div>
-            <form onSubmit={this.onSubmit}>
-              <div>
+            <form onSubmit={this.onSubmit}
+              className='form__container'
+            >
+              <div className='form__group'>
                 <label htmlFor='title'>Title</label>
                 <input 
                   type='text'
@@ -50,7 +52,7 @@ class AddBook extends Component {
                   required
                 />
               </div>
-              <div>
+              <div className='form__group'>
                 <label htmlFor='author'>Author</label>
                 <input 
                   type='text'
@@ -60,7 +62,7 @@ class AddBook extends Component {
                   required
                 />
               </div>
-              <div>
+              <div className='form__group'>
                 <label htmlFor='genre'>Genre</label>
                 <input 
                   type='text'
@@ -70,7 +72,7 @@ class AddBook extends Component {
                   required
                 />
               </div>
-              <div>
+              <div className='form__group'>
                 <label htmlFor='year'>Year</label>
                 <input 
                   type='number'
@@ -80,7 +82,7 @@ class AddBook extends Component {
                   required
                 />
               </div>
-              <div>
+              <div className='form__group'>
                 <label htmlFor='pages'>Pages</label>
                 <input 
                   type='number'
@@ -90,7 +92,7 @@ class AddBook extends Component {
                   required
                 />
               </div>
-              <div>
+              <div className='form__group'>
                 <label htmlFor='isbn'>ISBN</label>
                 <input 
                   type='number'
@@ -100,7 +102,7 @@ class AddBook extends Component {
                   required
                 />
               </div>
-              <button type='submit'>Submit</button>
+              <button className='button button--submit' type='submit'>Submit</button>
             </form>
           </div>  
       </div>

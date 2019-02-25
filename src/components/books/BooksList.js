@@ -13,7 +13,7 @@ class BooksList extends Component {
   render() {
     const { books } = this.props;
 
-    if(!books) return <p>Loading...</p>;
+    if(!books) return <p className='loading'>Loading...</p>;
     return (
       <div className='list'>
         <table className='list__table'>
