@@ -3,18 +3,20 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const bookRoutes = express.Router();
-let Book = require('./models/book.model');
+const cors = require('cors');
+
+let Book = require('./book.model');
 
 app.use(bodyParser.json());
-const db = 'mongodb://localhost/books';
+app.use(cors());
 
-mongoose.connect(db, { useNewUrlParser: true })
-    .then(() => console.log('MangoDB Connected'))
-    .catch(err => console.log(err));
+mongoose.connect('mongodb://127.0.0.1:27017/books', { useNewUrlParser: true });
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log('MongoDB Connected')
+})
 
 const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 bookRoutes.route('/').get((req, res) => {
     Book.find((err, books) => {
@@ -22,7 +24,7 @@ bookRoutes.route('/').get((req, res) => {
     });
 });
 
-bookRoutes.route(':/id').get((req, res) => {
+bookRoutes.route('/:id').get((req, res) => {
     let id = req.params.id;
     Book.findById(id, (err, book) => {
         res.json(book);
@@ -57,5 +59,7 @@ bookRoutes.route('/edit/:id').post((req, res) => {
             }).catch(err => res.status(400).send('Update not possible'));
     });
 });
-
+bookRoutes.route('/')
 app.use('/books', bookRoutes);
+
+app.listen(port, () => console.log(`Server is running on port ${port}`));
