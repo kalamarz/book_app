@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { firestoreConnect } from 'react-redux-firebase';
+import axios from 'axios';
 
 class AddBook extends Component {
     state = {
@@ -24,10 +23,8 @@ class AddBook extends Component {
 
         const newBook = this.state;
 
-        const { firestore, history } = this.props;
-
-        firestore.add({ collection: 'books' }, newBook)
-            .then(() => history.push('/'))
+        axios.post('http://localhost:5000/books/add', newBook)
+          .then(res => console.log(res.data));
     }
 
   render() {
@@ -110,8 +107,4 @@ class AddBook extends Component {
   }
 }
 
-AddBook.propTypes = {
-    firestore: PropTypes.object.isRequired
-}
-
-export default firestoreConnect()(AddBook)
+export default AddBook

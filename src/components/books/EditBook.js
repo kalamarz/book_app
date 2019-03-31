@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
 
 class EditBook extends Component {
   constructor(props){
@@ -17,7 +14,6 @@ class EditBook extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { book, firestore, history } = this.props;
 
     const editedBook = {
       title: this.titleInput.current.value,
@@ -28,14 +24,12 @@ class EditBook extends Component {
       isbn: this.isbnInput.current.value
     }
 
-    firestore.update({ collection: 'books', doc: book.id }, editedBook)
-      .then(history.push('/'));
+
   }
 
   render() {
-    const { book } = this.props
 
-    if(!book) return <p className='loading'>Loading...</p>;
+  //  if(!book) return <p className='loading'>Loading...</p>;
     return (
         <div className='form'>
           <form onSubmit={this.onSubmit}
@@ -46,7 +40,7 @@ class EditBook extends Component {
               <input 
                 type='text'
                 name='title'
-                defaultValue={book.title}
+                //defaultValue={book.title}
                 ref={this.titleInput}
                 required
               />
@@ -56,7 +50,7 @@ class EditBook extends Component {
               <input 
                 type='text'
                 name='author'
-                defaultValue={book.author}
+               // defaultValue={book.author}
                 ref={this.authorInput}
                 required
               />
@@ -66,7 +60,7 @@ class EditBook extends Component {
               <input 
                 type='text'
                 name='genre'
-                defaultValue={book.genre}
+              //  defaultValue={book.genre}
                 ref={this.genreInput}
                 required
               />
@@ -76,7 +70,7 @@ class EditBook extends Component {
               <input 
                 type='number'
                 name='year'
-                defaultValue={book.year}
+              //  defaultValue={book.year}
                 ref={this.yearInput}
                 required
               />
@@ -86,7 +80,7 @@ class EditBook extends Component {
               <input 
                 type='number'
                 name='pages'
-                defaultValue={book.pages}
+               // defaultValue={book.pages}
                 ref={this.pagesInput}
                 required
               />
@@ -96,7 +90,7 @@ class EditBook extends Component {
               <input 
                 type='number'
                 name='isbn'
-                defaultValue={book.isbn}
+               // defaultValue={book.isbn}
                 ref={this.isbnInput}
                 required
               />
@@ -109,11 +103,4 @@ class EditBook extends Component {
 }
 
 
-export default compose(
-    firestoreConnect(props => [
-        { collection: 'books', storeAs: 'book', doc: props.match.params.id }
-    ]),
-    connect(({ firestore: { ordered }}, props) => ({
-        book: ordered.book && ordered.book[0]
-    }))
-)(EditBook);
+export default EditBook;

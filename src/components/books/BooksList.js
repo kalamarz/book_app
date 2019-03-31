@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { firestoreConnect } from 'react-redux-firebase';
 
 class BooksList extends Component {
 
   onDeleteClick = ( bookId) => { 
-   this.props.firestore.collection('books').doc(bookId).delete();
+
   }
 
   render() {
@@ -49,9 +46,4 @@ class BooksList extends Component {
   }
 }
 
-export default compose(
-    firestoreConnect([{ collection: 'books' }]),
-    connect((state, props) => ({
-        books: state.firestore.ordered.books
-    }))
-)(BooksList)
+export default BooksList
