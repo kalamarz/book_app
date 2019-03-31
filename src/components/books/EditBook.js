@@ -1,34 +1,61 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class EditBook extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      title: '',
+      author: '',
+      genre: '',
+      year: '',
+      pages: '',
+      isbn: ''
+    }
+  }
 
-    this.titleInput = React.createRef();
-    this.authorInput = React.createRef();
-    this.genreInput = React.createRef();
-    this.yearInput = React.createRef();
-    this.pagesInput = React.createRef();
-    this.isbnInput = React.createRef();
+  componentDidMount(){
+    axios.get('http://localhost:5000/books/'+this.props.match.params.id)
+      .then(res => {
+        this.setState({
+          title: res.data.title,
+          author: res.data.author,
+          genre: res.data.genre,
+          year: res.data.year,
+          pages: res.data.pages,
+          isbn: res.data.isbn,
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   onSubmit = (e) => {
     e.preventDefault();
 
     const editedBook = {
-      title: this.titleInput.current.value,
-      author: this.authorInput.current.value,
-      genre: this.genreInput.current.value,
-      year: this.yearInput.current.value,
-      pages: this.pagesInput.current.value,
-      isbn: this.isbnInput.current.value
-    }
+      title: this.state.title,
+      author: this.state.author,
+      genre: this.state.genre,
+      year: this.state.year,
+      pages: this.state.pages,
+      isbn: this.state.isbn
+    };
+    axios.post('http://localhost:5000/books/edit/'+ this.props.match.params.id, editedBook)
+      .then(res => console.log(res.data));
 
-
+    this.props.history.push('/');
   }
 
-  render() {
+  onChange = (e) => {
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+  }
 
+  
+  render() {
+    console.log(this.state)
+    const { title, author, genre, year, pages, isbn } = this.state;
   //  if(!book) return <p className='loading'>Loading...</p>;
     return (
         <div className='form'>
@@ -40,8 +67,8 @@ class EditBook extends Component {
               <input 
                 type='text'
                 name='title'
-                //defaultValue={book.title}
-                ref={this.titleInput}
+                value={title}
+                onChange={this.onChange}
                 required
               />
             </div>
@@ -50,8 +77,8 @@ class EditBook extends Component {
               <input 
                 type='text'
                 name='author'
-               // defaultValue={book.author}
-                ref={this.authorInput}
+                value={author}
+                onChange={this.onChange}
                 required
               />
             </div>
@@ -60,8 +87,8 @@ class EditBook extends Component {
               <input 
                 type='text'
                 name='genre'
-              //  defaultValue={book.genre}
-                ref={this.genreInput}
+                value={genre}
+                onChange={this.onChange}
                 required
               />
             </div>
@@ -70,8 +97,8 @@ class EditBook extends Component {
               <input 
                 type='number'
                 name='year'
-              //  defaultValue={book.year}
-                ref={this.yearInput}
+                value={year}
+                onChange={this.onChange}
                 required
               />
             </div>
@@ -80,8 +107,8 @@ class EditBook extends Component {
               <input 
                 type='number'
                 name='pages'
-               // defaultValue={book.pages}
-                ref={this.pagesInput}
+                value={pages}
+                onChange={this.onChange}
                 required
               />
             </div>
@@ -90,8 +117,8 @@ class EditBook extends Component {
               <input 
                 type='number'
                 name='isbn'
-               // defaultValue={book.isbn}
-                ref={this.isbnInput}
+                value={isbn}
+                onChange={this.onChange}
                 required
               />
             </div>

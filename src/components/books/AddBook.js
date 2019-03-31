@@ -25,6 +25,8 @@ class AddBook extends Component {
 
         axios.post('http://localhost:5000/books/add', newBook)
           .then(res => console.log(res.data));
+
+        this.props.history.push('/');
     }
 
   render() {

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import withUnmounted from '@ishawnwang/withunmounted';
 
 class BooksList extends Component {
+  _isMounted = false;
+
   constructor(props){
     super(props);
     this.state = {
       books: []
     }
   }
-
-  componentDidMount(){
+  
+  componentDidMount(){ 
+    this._isMounted = true;
     axios.get('http://localhost:5000/books/')
       .then(res => {
         this.setState({
@@ -19,6 +23,23 @@ class BooksList extends Component {
       })
       .catch(err => console.log(err));
   }
+
+  componentWillUnmount(){
+    this._isMounted = false;
+  }
+
+  componentDidUpdate(){
+    axios.get('http://localhost:5000/books/')
+    .then(res => {
+      if(this._isMounted) {
+        this.setState({
+          books: res.data
+        });
+      }
+    })
+    .catch(err => console.log(err));
+  }
+
 
   onDeleteClick = ( bookId) => { 
 
@@ -63,4 +84,4 @@ class BooksList extends Component {
   }
 }
 
-export default BooksList
+export default withUnmounted(BooksList);
