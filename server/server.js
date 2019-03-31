@@ -59,6 +59,13 @@ bookRoutes.route('/edit/:id').post((req, res) => {
             }).catch(err => res.status(400).send('Update not possible'));
     });
 });
+
+bookRoutes.route('/:id').delete((req, res) => {
+    Book.findById(req.params.id)
+        .then(book => book.remove().then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }));
+})
+
 bookRoutes.route('/')
 app.use('/books', bookRoutes);
 

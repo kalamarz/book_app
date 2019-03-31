@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import withUnmounted from '@ishawnwang/withunmounted';
 
 class BooksList extends Component {
   _isMounted = false;
@@ -42,7 +41,12 @@ class BooksList extends Component {
 
 
   onDeleteClick = ( bookId) => { 
-
+    axios.delete('http://localhost:5000/books/'+bookId)
+      .then(res => {
+        this.setState({
+          books: this.state.books.filter(book => book._id !== res.data._id)
+        })
+      })
   }
 
   render() {
@@ -74,7 +78,7 @@ class BooksList extends Component {
               <td>{book.pages}</td>
               <td>{book.isbn}</td>
               <td><button className='button button--edit'><Link to={`/edit/${book._id}`}>Edit</Link></button></td>
-              <td><button className='button button--delete' onClick={ () => this.onDeleteClick(book.id)}>Delete</button></td>
+              <td><button className='button button--delete' onClick={ () => this.onDeleteClick(book._id)}>Delete</button></td>
             </tr>
             ))}
           </tbody>
@@ -84,4 +88,4 @@ class BooksList extends Component {
   }
 }
 
-export default withUnmounted(BooksList);
+export default BooksList;
