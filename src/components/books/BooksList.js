@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Pagination from '../common/Pagination';
+import { paginate } from '../../utils/paginate';
 
 class BooksList extends Component {
   _isMounted = false;
@@ -8,7 +10,9 @@ class BooksList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      books: []
+      books: [],
+      pageSize: 5,
+      currentPage: 1
     }
   }
   
@@ -49,9 +53,14 @@ class BooksList extends Component {
       })
   }
 
-  render() {
-    const { books } = this.state;
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  }
 
+  render() {
+    const { books, pageSize, currentPage } = this.state;
+    const booksList = paginate(books, currentPage, pageSize);
+     
     if(!books) return <p className='loading'>Loading...</p>;
     return (
       <div className='list'>
@@ -69,7 +78,7 @@ class BooksList extends Component {
             </tr>
           </thead>
           <tbody>
-            { books.map(book => (
+            { booksList.map(book => (
             <tr key={book._id}>
               <td>{book.title}</td>
               <td>{book.author}</td>
@@ -83,6 +92,12 @@ class BooksList extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination 
+          booksCount={books.length} 
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange}
+        />
     </div>
     )
   }
