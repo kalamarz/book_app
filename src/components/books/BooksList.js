@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '../common/Pagination';
 import { paginate } from '../../utils/paginate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class BooksList extends Component {
   _isMounted = false;
@@ -86,8 +87,22 @@ class BooksList extends Component {
               <td>{book.year}</td>
               <td>{book.pages}</td>
               <td>{book.isbn}</td>
-              <td><button className='button button--edit'><Link to={`/edit/${book._id}`}>Edit</Link></button></td>
-              <td><button className='button button--delete' onClick={ () => this.onDeleteClick(book._id)}>Delete</button></td>
+              <td>
+                <button className='button button--edit'>
+                  <Link to={`/edit/${book._id}`}>
+                    <FontAwesomeIcon className='icon' icon='pencil-alt'/>
+                    Edit
+                  </Link>
+                </button>
+              </td>
+              <td>
+                <button 
+                  className='button button--delete' 
+                  onClick={ () => this.onDeleteClick(book._id)}>
+                  <FontAwesomeIcon className='icon' icon='minus-circle'/>
+                  Delete
+                </button>
+              </td>
             </tr>
             ))}
           </tbody>

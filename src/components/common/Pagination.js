@@ -10,11 +10,15 @@ const Pagination = (props) => {
     const pages = _.range(1, pagesCount + 1);
 
   return (
-    <nav>
-        <ul>
+    <nav className='pagination'>
+        <ul className='pagination__list'>
             { pages.map(page => (
-                <li key={page}>
-                    <a onClick={() => onPageChange(page)}>{page}</a>
+                <li key={page} className='pagination__item'>
+                    <a className='pagination__link' 
+                        href='#'
+                        onClick={() => onPageChange(page)}>
+                        {page}
+                    </a>
                 </li>
             ))}
            

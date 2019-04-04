@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class AddBook extends Component {
     state = {
@@ -35,7 +36,10 @@ class AddBook extends Component {
     return (
       <div className='form'>
         <button className='button button-back'>
-          <Link to ='/'>Back</Link>
+          <Link to ='/'>
+            <FontAwesomeIcon className='icon' icon='long-arrow-alt-left'/>
+            Back
+          </Link>
         </button>
           <div>
             <form onSubmit={this.onSubmit}

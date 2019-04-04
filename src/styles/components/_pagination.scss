@@ -1,0 +1,24 @@
+.pagination {
+
+    &__list {
+        list-style: none;
+        display: flex;
+        margin: 10px 0;
+        padding: 0;
+    }
+
+    &__item {
+
+        cursor: pointer;
+    }
+
+    &__link {
+        padding: 5px 10px;
+        border: 1px solid $colorDark;
+
+        &:hover {
+
+            background-color: $colorLightGrey;
+        }
+    }
+}

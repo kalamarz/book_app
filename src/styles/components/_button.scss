@@ -26,4 +26,15 @@
         background-color: $colorSubmit;
         color: $colorLightGrey;
     }
+
+    &:hover .icon {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.icon {
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all .3s;
 }
