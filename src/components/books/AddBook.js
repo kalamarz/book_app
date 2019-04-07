@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -35,12 +35,10 @@ class AddBook extends Component {
 
     return (
       <div className='form'>
-        <button className='button button-back'>
-          <Link to ='/'>
-            <FontAwesomeIcon className='icon' icon='long-arrow-alt-left'/>
-            Back
-          </Link>
-        </button>
+        <NavLink className='button button--back' to ='/'>
+          <FontAwesomeIcon className='icon icon--back' icon='long-arrow-alt-left'/>
+          Back
+        </NavLink>
           <div>
             <form onSubmit={this.onSubmit}
               className='form__container'

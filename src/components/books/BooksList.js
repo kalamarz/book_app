@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '../common/Pagination';
 import { paginate } from '../../utils/paginate';
@@ -88,12 +88,10 @@ class BooksList extends Component {
               <td>{book.pages}</td>
               <td>{book.isbn}</td>
               <td>
-                <button className='button button--edit'>
-                  <Link to={`/edit/${book._id}`}>
-                    <FontAwesomeIcon className='icon' icon='pencil-alt'/>
-                    Edit
-                  </Link>
-                </button>
+                <NavLink className='button button--edit' to={`/edit/${book._id}`}>
+                  <FontAwesomeIcon className='icon' icon='pencil-alt'/>
+                  Edit
+                </NavLink>
               </td>
               <td>
                 <button 
