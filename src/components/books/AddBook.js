@@ -50,6 +50,7 @@ class AddBook extends Component {
                   name='title'
                   value={title}
                   onChange={this.onChange}
+                  className='form__input'
                   required
                 />
               </div>
@@ -60,6 +61,7 @@ class AddBook extends Component {
                   name='author'
                   value={author}
                   onChange={this.onChange}
+                  className='form__input'
                   required
                 />
               </div>
@@ -70,6 +72,7 @@ class AddBook extends Component {
                   name='genre'
                   value={genre}
                   onChange={this.onChange}
+                  className='form__input'
                   required
                 />
               </div>
@@ -80,6 +83,7 @@ class AddBook extends Component {
                   name='year'
                   value={year}
                   onChange={this.onChange}
+                  className='form__input'
                   required
                 />
               </div>
@@ -90,6 +94,7 @@ class AddBook extends Component {
                   name='pages'
                   value={pages}
                   onChange={this.onChange}
+                  className='form__input'
                   required
                 />
               </div>
@@ -100,6 +105,7 @@ class AddBook extends Component {
                   name='isbn'
                   value={isbn}
                   onChange={this.onChange}
+                  className='form__input'
                   required
                 />
               </div>

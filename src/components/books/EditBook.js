@@ -54,9 +54,8 @@ class EditBook extends Component {
 
   
   render() {
-    console.log(this.state)
     const { title, author, genre, year, pages, isbn } = this.state;
-  //  if(!book) return <p className='loading'>Loading...</p>;
+
     return (
         <div className='form'>
           <form onSubmit={this.onSubmit}
@@ -69,6 +68,7 @@ class EditBook extends Component {
                 name='title'
                 value={title}
                 onChange={this.onChange}
+                className='form__input'
                 required
               />
             </div>
@@ -79,6 +79,7 @@ class EditBook extends Component {
                 name='author'
                 value={author}
                 onChange={this.onChange}
+                className='form__input'
                 required
               />
             </div>
@@ -89,6 +90,7 @@ class EditBook extends Component {
                 name='genre'
                 value={genre}
                 onChange={this.onChange}
+                className='form__input'
                 required
               />
             </div>
@@ -99,6 +101,7 @@ class EditBook extends Component {
                 name='year'
                 value={year}
                 onChange={this.onChange}
+                className='form__input'
                 required
               />
             </div>
@@ -109,6 +112,7 @@ class EditBook extends Component {
                 name='pages'
                 value={pages}
                 onChange={this.onChange}
+                className='form__input'
                 required
               />
             </div>
@@ -119,6 +123,7 @@ class EditBook extends Component {
                 name='isbn'
                 value={isbn}
                 onChange={this.onChange}
+                className='form__input'
                 required
               />
             </div>
