@@ -8,17 +8,22 @@
     }
 
     &__item {
-
         cursor: pointer;
-    }
-
-    &__link {
         padding: 5px 10px;
         border: 1px solid $colorDark;
 
-        &:hover {
+        &--active {
+            background-color: $colorDark;
+        }
 
+        &:hover {
             background-color: $colorLightGrey;
         }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $colorBlack;
+        font-weight: 700;
     }
 }
