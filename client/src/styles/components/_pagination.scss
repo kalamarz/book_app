@@ -1,0 +1,29 @@
+.pagination {
+
+    &__list {
+        list-style: none;
+        display: flex;
+        margin: 10px 0;
+        padding: 0;
+    }
+
+    &__item {
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid $colorDark;
+
+        &--active {
+            background-color: $colorDark;
+        }
+
+        &:hover {
+            background-color: $colorLightGrey;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $colorBlack;
+        font-weight: 700;
+    }
+}
