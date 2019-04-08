@@ -15,7 +15,7 @@ class EditBook extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:5000/books/'+this.props.match.params.id)
+    axios.get('/api/books/'+this.props.match.params.id)
       .then(res => {
         this.setState({
           title: res.data.title,
@@ -40,7 +40,7 @@ class EditBook extends Component {
       pages: this.state.pages,
       isbn: this.state.isbn
     };
-    axios.post('http://localhost:5000/books/edit/'+ this.props.match.params.id, editedBook)
+    axios.post('/api/books/edit/'+ this.props.match.params.id, editedBook)
       .then(res => console.log(res.data));
 
     this.props.history.push('/');

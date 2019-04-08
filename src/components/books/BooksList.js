@@ -19,7 +19,7 @@ class BooksList extends Component {
   
   componentDidMount(){ 
     this._isMounted = true;
-    axios.get('http://localhost:5000/books/')
+    axios.get('/api/books')
       .then(res => {
         this.setState({
           books: res.data
@@ -33,7 +33,7 @@ class BooksList extends Component {
   }
 
   componentDidUpdate(){
-    axios.get('http://localhost:5000/books/')
+    axios.get('/api/books')
     .then(res => {
       if(this._isMounted) {
         this.setState({
@@ -46,7 +46,7 @@ class BooksList extends Component {
 
 
   onDeleteClick = ( bookId) => { 
-    axios.delete('http://localhost:5000/books/'+bookId)
+    axios.delete('/api/books/'+bookId)
       .then(res => {
         this.setState({
           books: this.state.books.filter(book => book._id !== res.data._id)
@@ -59,6 +59,7 @@ class BooksList extends Component {
   }
 
   render() {
+ 
     const { books, pageSize, currentPage } = this.state;
     const booksList = paginate(books, currentPage, pageSize);
      
