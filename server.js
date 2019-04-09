@@ -2,15 +2,16 @@ const express  = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
-const config = require('./config/config').get(process.env.NODE_ENV);
+const path = require('path');
+const config = require('./server/config/config').get(process.env.NODE_ENV);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE, { useNewUrlParser: true } );
 
-app.use(express.static('client/build'));
+
 app.use(bodyParser.json());
 
-app.use('/api', require('./routes/api'));
+app.use('/api', require('./server/routes/api'));
 
 app.use((err, req, res, next) => {
     console.log(err);
@@ -18,9 +19,10 @@ app.use((err, req, res, next) => {
 });
 
 if(process.env.NODE_ENV === 'production'){
-    const path = require('path');
-    app.get('/*', (req, res ) => {
-        res.sendfile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res ) => {
+        res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
 
