@@ -66,52 +66,54 @@ class BooksList extends Component {
     if(!books) return <p className='loading'>Loading...</p>;
     return (
       <div className='list'>
-        <table className='list__table'>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Genre</th>
-              <th>Year</th>
-              <th>Pages</th>
-              <th>ISBN</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            { booksList.map(book => (
-            <tr key={book._id}>
-              <td>{book.title}</td>
-              <td>{book.author}</td>
-              <td>{book.genre}</td>
-              <td>{book.year}</td>
-              <td>{book.pages}</td>
-              <td>{book.isbn}</td>
-              <td>
-                <NavLink className='button button--edit' to={`/edit/${book._id}`}>
-                  <FontAwesomeIcon className='icon' icon='pencil-alt'/>
-                  Edit
-                </NavLink>
-              </td>
-              <td>
-                <button 
-                  className='button button--delete' 
-                  onClick={ () => this.onDeleteClick(book._id)}>
-                  <FontAwesomeIcon className='icon' icon='minus-circle'/>
-                  Delete
-                </button>
-              </td>
-            </tr>
-            ))}
-          </tbody>
-        </table>
-        <Pagination 
-          booksCount={books.length} 
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={this.handlePageChange}
-        />
+        <div className='list__container'>
+          <table className='list__table'>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Pages</th>
+                <th>ISBN</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              { booksList.map(book => (
+              <tr key={book._id}>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.genre}</td>
+                <td>{book.year}</td>
+                <td>{book.pages}</td>
+                <td>{book.isbn}</td>
+                <td>
+                  <NavLink className='button button--edit' to={`/edit/${book._id}`}>
+                    <FontAwesomeIcon className='icon' icon='pencil-alt'/>
+                    Edit
+                  </NavLink>
+                </td>
+                <td>
+                  <button 
+                    className='button button--delete' 
+                    onClick={ () => this.onDeleteClick(book._id)}>
+                    <FontAwesomeIcon className='icon' icon='minus-circle'/>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+              ))}
+            </tbody>
+          </table>
+      </div>
+      <Pagination 
+        booksCount={books.length} 
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={this.handlePageChange}
+      />
     </div>
     )
   }

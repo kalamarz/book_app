@@ -9,7 +9,6 @@
 
     &__item {
         cursor: pointer;
-        padding: 5px 10px;
         border: 1px solid $colorDark;
 
         &--active {
@@ -25,5 +24,9 @@
         text-decoration: none;
         color: $colorBlack;
         font-weight: 700;
+        background: transparent;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
     }
 }
