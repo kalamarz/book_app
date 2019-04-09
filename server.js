@@ -8,8 +8,9 @@ const config = require('./server/config/config').get(process.env.NODE_ENV);
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE, { useNewUrlParser: true } );
 
-
 app.use(bodyParser.json());
+
+app.use(express.static('client/build'));
 
 app.use('/api', require('./server/routes/api'));
 
@@ -19,9 +20,7 @@ app.use((err, req, res, next) => {
 });
 
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'));
-
-    app.get('*', (req, res ) => {
+    app.get('/*', (req, res ) => {
         res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
